@@ -65,11 +65,12 @@ public class Main{
 						System.out.print(order.get(i%order.size()) + " ");
 					}
 					System.out.println();
-					if(input.equalsIgnoreCase(order.get(counter%order.size()-1))){
+					if(input.equals(order.get(counter%order.size()-1))){
 						correctCounter++;
 					}
 					currentTime = System.currentTimeMillis();
 					if(currentTime-startTime>=10000){
+						correctCounter--;
 						System.out.println("Time up! Score: "+correctCounter);
 						break;
 
