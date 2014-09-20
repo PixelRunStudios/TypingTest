@@ -22,3 +22,8 @@ case
 return
 break
 continue
+class
+extends
+implements
+super
+interface
