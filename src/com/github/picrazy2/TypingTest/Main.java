@@ -29,8 +29,10 @@ public class Main{
 		int correctCounter = 0;
 
 		File file = new File("bank.txt");
+		BufferedReader reader = null;
+
 		try{
-			BufferedReader reader = new BufferedReader(new FileReader(file));
+			reader = new BufferedReader(new FileReader(file));
 			line = reader.readLine();
 			while(line!=null){
 				cont.add(line);
@@ -41,6 +43,16 @@ public class Main{
 		catch(IOException e){
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally{
+			if(reader!=null){
+				try{
+					reader.close();
+				}
+				catch(IOException e){
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		}
 		System.out.println(TIME_IN_MILLIS/1000+ " seconds starts after pressing 1");
 		BufferedReader systemIn = new BufferedReader(new InputStreamReader(System.in));
