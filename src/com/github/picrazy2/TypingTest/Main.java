@@ -10,10 +10,11 @@ import java.util.Random;
 
 public class Main{
 
-
+	static final int TIME_IN_MILLIS = 60000;
 	static long startTime = 0;
 	static long currentTime = 0;
 	static Random random = new Random();
+
 
 	static ArrayList<String> cont = new ArrayList<String>();
 	static ArrayList<String> fullCont = new ArrayList<String>();
@@ -41,7 +42,7 @@ public class Main{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println("1 minute starts after pressing 1");
+		System.out.println(TIME_IN_MILLIS/1000+ " seconds starts after pressing 1");
 		BufferedReader systemIn = new BufferedReader(new InputStreamReader(System.in));
 		boolean start = true;
 		int counter = 0;
@@ -62,7 +63,7 @@ public class Main{
 					System.out.println();
 				}else if(!start){
 					currentTime = System.currentTimeMillis();
-					if(currentTime-startTime>=10000){
+					if(currentTime-startTime>=TIME_IN_MILLIS){
 						System.out.println("Time up! Score: "+correctCounter);
 						break;
 
