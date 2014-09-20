@@ -77,18 +77,22 @@ public class Main{
 					currentTime = System.currentTimeMillis();
 					if(currentTime-startTime>=TIME_IN_MILLIS){
 						System.out.println("Time up! Score: "+correctCounter);
+						System.out.println("Wrong: "+(counter-correctCounter));
 						break;
 
 					}
 					else{
+						if(input.equals(order.get(counter%order.size()))){
+							correctCounter++;
+						}
+						counter++;
 						for(int i = counter; i<counter+5; i++){
 							System.out.print(order.get(i%order.size()) + " ");
 						}
 						System.out.println();
-						if(input.equals(order.get(counter%order.size()-1))){
-							correctCounter++;
-						}
+
 					}
+					System.out.print("");
 				}
 			}
 			catch(IOException e){
@@ -96,7 +100,6 @@ public class Main{
 				e.printStackTrace();
 			}
 
-			counter++;
 		}
 
 
