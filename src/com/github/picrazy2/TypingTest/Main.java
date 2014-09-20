@@ -11,18 +11,17 @@ import java.util.Random;
 public class Main{
 
 	static final int TIME_IN_MILLIS = 60000;
-	static long startTime = 0;
-	static long currentTime = 0;
-	static Random random = new Random();
+	static final int NUMBER_DISPLAYED = 5;
 
-
-	static ArrayList<String> cont = new ArrayList<String>();
-	static ArrayList<String> fullCont = new ArrayList<String>();
-
-	static ArrayList<String> order = new ArrayList<String>();
 
 	public static void main(String[] args){
+		ArrayList<String> cont = new ArrayList<String>();
+		ArrayList<String> order = new ArrayList<String>();
 
+		ArrayList<String> fullCont = new ArrayList<String>();
+
+		long startTime = 0;
+		long currentTime = 0;
 
 		// TODO Auto-generated method stub
 		String line = null;
@@ -66,10 +65,10 @@ public class Main{
 					break;
 				}
 				else if(input.equals("1") && start){
-					makeWords();
+					makeWords(cont, order);
 					start = false;
 					startTime = System.currentTimeMillis();
-					for(int i = counter; i<counter+5; i++){
+					for(int i = counter; i<counter+NUMBER_DISPLAYED; i++){
 						System.out.print(order.get(i%order.size()) + " ");
 					}
 					System.out.println();
@@ -86,13 +85,12 @@ public class Main{
 							correctCounter++;
 						}
 						counter++;
-						for(int i = counter; i<counter+5; i++){
+						for(int i = counter; i<counter+NUMBER_DISPLAYED; i++){
 							System.out.print(order.get(i%order.size()) + " ");
 						}
 						System.out.println();
 
 					}
-					System.out.print("");
 				}
 			}
 			catch(IOException e){
@@ -106,7 +104,8 @@ public class Main{
 
 	}
 
-	public static void makeWords(){
+	public static void makeWords(ArrayList<String> cont, ArrayList<String> order){
+		Random random = new Random();
 		while(cont.size()!=0){
 			int temp = random.nextInt(cont.size());
 			order.add(cont.get(temp));
