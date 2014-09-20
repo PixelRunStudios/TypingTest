@@ -10,11 +10,11 @@ import java.util.Random;
 
 public class Main{
 
-	static final int TIME_IN_MILLIS = 60000;
-	static final int NUMBER_DISPLAYED = 5;
-
-
 	public static void main(String[] args){
+		typingTest(60000,5, "bank.txt");
+	}
+
+	public static void typingTest(int timeInMillis, int numberDisplayed, String bank){
 		ArrayList<String> cont = new ArrayList<String>();
 		ArrayList<String> order = new ArrayList<String>();
 
@@ -27,7 +27,7 @@ public class Main{
 		String line = null;
 		int correctCounter = 0;
 
-		File file = new File("bank.txt");
+		File file = new File(bank);
 		BufferedReader reader = null;
 
 		try{
@@ -53,7 +53,8 @@ public class Main{
 				}
 			}
 		}
-		System.out.println(TIME_IN_MILLIS/1000+ " seconds starts after pressing 1");
+		System.out.println(timeInMillis/1000+ " seconds starts after pressing 1");
+		System.out.println("-1 to quit");
 		BufferedReader systemIn = new BufferedReader(new InputStreamReader(System.in));
 		boolean start = true;
 		int counter = 0;
@@ -61,22 +62,23 @@ public class Main{
 		while(true){
 			try{
 				String input = systemIn.readLine();
-				if(input.equals("quit")){
+				if(input.equals("-1")){
+					currentTime = System.currentTimeMillis();
+					System.out.println("Time elapsed: "+(currentTime-startTime)/1000.0 + " seconds");
 					break;
 				}
 				else if(input.equals("1") && start){
 					makeWords(cont, order);
 					start = false;
 					startTime = System.currentTimeMillis();
-					for(int i = counter; i<counter+NUMBER_DISPLAYED; i++){
+					for(int i = counter; i<counter+numberDisplayed; i++){
 						System.out.print(order.get(i%order.size()) + " ");
 					}
 					System.out.println();
 				}else if(!start){
 					currentTime = System.currentTimeMillis();
-					if(currentTime-startTime>=TIME_IN_MILLIS){
-						System.out.println("Time up! Score: "+correctCounter);
-						System.out.println("Wrong: "+(counter-correctCounter));
+					if(currentTime-startTime>=timeInMillis){
+
 						break;
 
 					}
@@ -85,7 +87,7 @@ public class Main{
 							correctCounter++;
 						}
 						counter++;
-						for(int i = counter; i<counter+NUMBER_DISPLAYED; i++){
+						for(int i = counter; i<counter+numberDisplayed; i++){
 							System.out.print(order.get(i%order.size()) + " ");
 						}
 						System.out.println();
@@ -99,9 +101,7 @@ public class Main{
 			}
 
 		}
-
-
-
+		System.out.println("Time up! Correct: "+correctCounter + ", Wrong: "+(counter-correctCounter));
 	}
 
 	public static void makeWords(ArrayList<String> cont, ArrayList<String> order){
