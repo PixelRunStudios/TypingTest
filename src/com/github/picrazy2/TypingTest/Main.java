@@ -67,12 +67,12 @@ public class Main{
 					System.out.println();
 					if(input.equalsIgnoreCase(order.get(counter%order.size()))){
 						correctCounter++;
-						currentTime = System.currentTimeMillis();
-						if(currentTime-startTime>=1000){
-							System.out.println("Time up! Score: "+correctCounter);
-							break;
+					}
+					currentTime = System.currentTimeMillis();
+					if(currentTime-startTime>=10000){
+						System.out.println("Time up! Score: "+correctCounter);
+						break;
 
-						}
 					}
 				}
 			}
