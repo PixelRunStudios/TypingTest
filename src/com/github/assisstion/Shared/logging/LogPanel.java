@@ -81,6 +81,8 @@ public abstract class LogPanel extends JPanel implements Runnable{
 
 		dos = new DataOutputStream(pos);
 		dis = new DataInputStream(pis);
+
+		new Thread(this).start();
 	}
 
 	@Override
@@ -100,5 +102,10 @@ public abstract class LogPanel extends JPanel implements Runnable{
 
 	}
 
+	public Logger getLogger(){
+		return logger;
+	}
+
+	//Not on the event dispatch thread
 	public abstract boolean processText(String input);
 }
