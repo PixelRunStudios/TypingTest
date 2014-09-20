@@ -61,19 +61,20 @@ public class Main{
 					}
 					System.out.println();
 				}else if(!start){
-					for(int i = counter; i<counter+5; i++){
-						System.out.print(order.get(i%order.size()) + " ");
-					}
-					System.out.println();
-					if(input.equals(order.get(counter%order.size()-1))){
-						correctCounter++;
-					}
 					currentTime = System.currentTimeMillis();
 					if(currentTime-startTime>=10000){
-						correctCounter--;
 						System.out.println("Time up! Score: "+correctCounter);
 						break;
 
+					}
+					else{
+						for(int i = counter; i<counter+5; i++){
+							System.out.print(order.get(i%order.size()) + " ");
+						}
+						System.out.println();
+						if(input.equals(order.get(counter%order.size()-1))){
+							correctCounter++;
+						}
 					}
 				}
 			}
