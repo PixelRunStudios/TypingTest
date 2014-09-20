@@ -1,0 +1,4 @@
+TypingTest
+==========
+
+Custom typing test
