@@ -65,7 +65,7 @@ public class Main{
 						System.out.print(order.get(i%order.size()) + " ");
 					}
 					System.out.println();
-					if(input.equalsIgnoreCase(order.get(counter%order.size()))){
+					if(input.equalsIgnoreCase(order.get(counter%order.size()-1))){
 						correctCounter++;
 					}
 					currentTime = System.currentTimeMillis();
