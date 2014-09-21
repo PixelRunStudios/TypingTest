@@ -163,7 +163,7 @@ public class TypingPanel extends LogPanel{
 						setLoggerColor(Color.black);
 					}else{
 						setLoggerColor(Color.red);
-						getLogger().log(CustomLevel.NOMESSAGE, order.get(counter%order.size()) + "\n\n");
+						getLogger().log(CustomLevel.NOMESSAGE, input + "\n\n");
 						setLoggerColor(Color.black);
 					}
 					counter++;
