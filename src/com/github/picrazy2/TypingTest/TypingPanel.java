@@ -81,7 +81,7 @@ public class TypingPanel extends LogPanel{
 				}
 			}
 		}
-		getLogger().log(CustomLevel.NOMESSAGE,timeInMillis/1000+ " seconds starts after pressing 1");
+		getLogger().log(CustomLevel.NOMESSAGE,timeInMillis/1000+ " seconds starts after pressing 1\n");
 		getLogger().log(CustomLevel.NOMESSAGE,"-1 to quit\n\n");
 
 		start = true;
