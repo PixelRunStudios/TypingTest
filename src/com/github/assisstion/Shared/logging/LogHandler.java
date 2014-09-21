@@ -7,11 +7,11 @@ import java.util.logging.LogRecord;
 public class LogHandler extends Handler{
 
 	protected LoggerPane gui;
-	
+
 	public LogHandler(LoggerPane gui){
 		this.gui = gui;
 	}
-	
+
 	@Override
 	public void close() throws SecurityException{
 		// Unimplemented
