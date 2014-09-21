@@ -59,6 +59,8 @@ tan
 asin
 acos
 atan
+log
+log10
 sqrt
 pow
 String[]
