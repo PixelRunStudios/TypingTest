@@ -1,5 +1,6 @@
 package com.github.picrazy2.TypingTest;
 
+import java.awt.Color;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.BufferedReader;
@@ -81,7 +82,7 @@ public class TypingPanel extends LogPanel{
 			}
 		}
 		getLogger().log(CustomLevel.NOMESSAGE,timeInMillis/1000+ " seconds starts after pressing 1");
-		getLogger().log(CustomLevel.NOMESSAGE,"-1 to quit");
+		getLogger().log(CustomLevel.NOMESSAGE,"-1 to quit\n\n");
 
 		start = true;
 		finish = false;
@@ -97,13 +98,19 @@ public class TypingPanel extends LogPanel{
 
 	}
 
-	public static void makeWords(ArrayList<String> cont, ArrayList<String> order){
+	public void makeWords(ArrayList<String> cont, ArrayList<String> order){
 		Random random = new Random();
 		while(cont.size()!=0){
 			int temp = random.nextInt(cont.size());
 			order.add(cont.get(temp));
 			cont.remove(temp);
 		}
+		//setSeparator(" ");
+		/*
+		for(int i = 0; i<order.size();i++){
+			getLogger().log(CustomLevel.NOMESSAGE, order.get(i));
+		}
+		getLogger().log(CustomLevel.NOMESSAGE,"\n");*/
 	}
 
 
@@ -120,6 +127,7 @@ public class TypingPanel extends LogPanel{
 		input = s;
 		out:{
 			if(input.equals("-1")){
+				//setSeparator("\n");
 				currentTime = System.currentTimeMillis();
 				getLogger().log(CustomLevel.NOMESSAGE,"Time elapsed: "+(currentTime-startTime)/1000.0 + " seconds");
 				getLogger().log(CustomLevel.NOMESSAGE,"Time up! Correct: "+correctCounter + ", Wrong: "+(counter-correctCounter));
@@ -135,10 +143,11 @@ public class TypingPanel extends LogPanel{
 				for(int i = counter; i<counter+numberDisplayed; i++){
 					value +=order.get(i%order.size()) + " ";
 				}
-				getLogger().log(CustomLevel.NOMESSAGE, value);
+				getLogger().log(CustomLevel.NOMESSAGE, value+ "\n");
 				System.out.println();
 			}
 			else if(!start){
+				//setSeparator("\n");
 				currentTime = System.currentTimeMillis();
 				if(currentTime-startTime>=timeInMillis){
 					getLogger().log(CustomLevel.NOMESSAGE,"Time up! Correct: "+correctCounter + ", Wrong: "+(counter-correctCounter));
@@ -149,13 +158,21 @@ public class TypingPanel extends LogPanel{
 				else{
 					if(input.equals(order.get(counter%order.size()))){
 						correctCounter++;
+						setLoggerColor(Color.green);
+						getLogger().log(CustomLevel.NOMESSAGE, order.get(counter%order.size()) + "\n\n");
+						setLoggerColor(Color.black);
+					}else{
+						setLoggerColor(Color.red);
+						getLogger().log(CustomLevel.NOMESSAGE, order.get(counter%order.size()) + "\n\n");
+						setLoggerColor(Color.black);
 					}
 					counter++;
+
 					String value = "";
 					for(int i = counter; i<counter+numberDisplayed; i++){
 						value+=order.get(i%order.size()) + " ";
 					}
-					getLogger().log(CustomLevel.NOMESSAGE, value);
+					getLogger().log(CustomLevel.NOMESSAGE, value + "\n");
 
 					System.out.println();
 

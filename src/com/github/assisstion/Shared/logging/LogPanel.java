@@ -16,7 +16,6 @@ import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.text.StyleConstants;
 
 public abstract class LogPanel extends JPanel implements Runnable{
 
@@ -109,7 +108,11 @@ public abstract class LogPanel extends JPanel implements Runnable{
 	}
 
 	public void setLoggerColor(Color color){
-		StyleConstants.setForeground(loggerPane.style, color);
+		loggerPane.color = color;
+	}
+
+	public Color getLoggerColor(){
+		return loggerPane.color;
 	}
 
 	//Not on the event dispatch thread

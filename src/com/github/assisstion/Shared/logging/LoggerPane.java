@@ -28,7 +28,8 @@ public class LoggerPane extends JPanel{
 	private JProgressBar progressBar;
 	protected Style style;
 	protected StyledDocument document;
-	protected String separator;
+	//protected String separator;
+	protected Color color = Color.BLACK;
 
 	/**
 	 * Create the frame.
@@ -67,9 +68,9 @@ public class LoggerPane extends JPanel{
 		worker = new LogWorker();
 		progress = new ProgressWorker();
 
-		separator = "\n";
+		//separator = "\n";
 	}
-
+	/*
 	public void setSeparator(String separator){
 		this.separator = separator;
 	}
@@ -77,14 +78,14 @@ public class LoggerPane extends JPanel{
 	public String getSeparator(){
 		return separator;
 	}
-
+	 */
 	public void setProgress(IntegerPair values){
 		progress.push(values);
 	}
 
-	public class LogWorker extends SwingWorker<Object, String>{
+	public class LogWorker extends SwingWorker<Object, Pair<String, Color>>{
 
-		protected void push(String message){
+		protected void push(Pair<String, Color> message){
 			publish(message);
 		}
 
@@ -94,20 +95,19 @@ public class LoggerPane extends JPanel{
 		}
 
 		@Override
-		protected void process(List<String> messages){
-			String message = "";
-			for(String messageOne : messages){
-				if(!textPane.getText().equals("") || !message.equals("")){
+		protected void process(List<Pair<String, Color>> messages){
+			for(Pair<String, Color> messageOne : messages){
+				/*if(!textPane.getText().equals("") || !message.equals("")){
 					message += separator;
+				}*/
+				StyleConstants.setForeground(style, messageOne.getValueTwo());
+				try{
+					document.insertString(document.getLength(), messageOne.getValueOne(), style);
 				}
-				message += messageOne;
-			}
-			try{
-				document.insertString(document.getLength(), message, style);
-			}
-			catch(BadLocationException e){
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				catch(BadLocationException e){
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		}
 	}
